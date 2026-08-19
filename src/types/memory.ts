@@ -1,0 +1,1 @@
+export type Memory = Record<string, unknown>

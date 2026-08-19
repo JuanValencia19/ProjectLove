@@ -1,0 +1,1 @@
+export type Proximity = Record<string, unknown>
