@@ -1,1 +1,83 @@
-/* Global styles will be defined with the visual direction. */
+@import "tailwindcss";
+
+/*
+ * Design tokens — MVP1 Story Experience.
+ * Palette and motion utilities ported from references/lovable/styles.css
+ * (D-016: reference is the canonical visual spec; read-only).
+ */
+
+@theme {
+  --color-hero-red: oklch(0.58 0.23 27);
+  --color-hero-pink: oklch(0.66 0.28 350);
+  --color-hero-blue: oklch(0.82 0.15 205);
+  --color-background: oklch(0.11 0.02 290);
+  --color-foreground: oklch(0.98 0 0);
+
+  --font-display: var(--font-display);
+  --font-serif: var(--font-serif);
+  --font-sans: var(--font-sans);
+
+  --gradient-veil: linear-gradient(
+    to bottom,
+    color-mix(in oklab, var(--color-background) 15%, transparent),
+    color-mix(in oklab, var(--color-background) 35%, transparent) 45%,
+    var(--color-background)
+  );
+}
+
+@layer base {
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+  }
+}
+
+@utility halftone {
+  background-image: radial-gradient(currentColor 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+@utility chromatic {
+  text-shadow:
+    2px 0 var(--color-hero-pink),
+    -2px 0 var(--color-hero-blue);
+}
+
+@utility veil {
+  background-image: var(--gradient-veil);
+}
+
+@keyframes drift-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slow-zoom {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1.14);
+  }
+}
+
+@utility animate-drift-in {
+  animation: drift-in 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@utility animate-slow-zoom {
+  animation: slow-zoom 24s ease-out infinite alternate;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-drift-in,
+  .animate-slow-zoom {
+    animation: none;
+  }
+}
