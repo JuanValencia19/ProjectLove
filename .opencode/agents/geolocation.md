@@ -16,6 +16,9 @@ permission:
     "git status": allow
     "git diff*": allow
     "git log*": allow
+  task:
+    "*": deny
+    "explore": allow
   webfetch: allow
   websearch: allow
   "github_*": deny
@@ -35,10 +38,18 @@ Implementas el sistema de proximidad y geolocalización del producto: hooks de g
 
 ## Fuentes del proyecto (OBLIGATORIO antes de ejecutar)
 
-1. Lee `AGENTS.md` de la raíz del repo.
-2. Lee los docs aplicables: `docs/PROXIMITY-SYSTEM.md`, `docs/DATA-MODEL.md`, `docs/PRD.md`, `docs/ARCHITECTURE.md`.
-3. **Estado real de los docs** — verifica el contenido de cada doc antes de usarlo: `PRD.md` y `ARCHITECTURE.md` tienen contenido real; `DESIGN-DIRECTION.md` y `COMPONENT-SPEC.md` son esqueletos; `MOTION-SYSTEM.md`, `DATA-MODEL.md`, `PROXIMITY-SYSTEM.md` y `DECISIONS.md` están "Pendiente de definir". Si la especificación que necesitas para ejecutar está vacía o es un esqueleto, DETENTE y repórtalo: NO inventes especificaciones, features, APIs, contratos de datos ni criterios de éxito.
+1. Lee la skill `.opencode/skills/ourstory-context/` PRIMERO — es tu contexto base del proyecto.
+2. Lee los docs dirigidos a tu rol: `docs/PROXIMITY-SYSTEM.md` COMPLETO (imprescindible: arquitectura, 8 estados, umbral ≤5m, hooks useGeolocation → useRealtimeLocation → useProximity, §31 decisiones pendientes) + `docs/DATA-MODEL.md` completo + `docs/ARCHITECTURE.md` §13 (Proximity Architecture) + `docs/PRD.md` §8.7 (Proximity Experience), §13 (Privacy), §18 (Acceptance Criteria) + `docs/DECISIONS.md` D-007/D-008/D-009.
+3. **Estado real de los docs** — verifica el contenido antes de usarlo: `PROXIMITY-SYSTEM.md`, `DATA-MODEL.md` y `DECISIONS.md` tienen contenido real. Si la especificación que necesitas para ejecutar está vacía o es un esqueleto, DETENTE y repórtalo: NO inventes especificaciones, features, APIs, contratos de datos ni criterios de éxito.
 4. Revisa el código existente de geolocalización en `src/hooks/` (`use-geolocation.ts`, `use-proximity.ts`) y `src/lib/distance.ts` antes de escribir código nuevo.
+
+## Skills de apoyo
+
+No existe skill externa de geolocalización/proximidad en el ecosistema. Tu contexto lo cubre `.opencode/skills/ourstory-context/` (contexto del proyecto) y este prompt.
+
+## Delegación de exploración (ahorro de tokens)
+
+En tareas complejas que requieran entender código o explorar el repo, DELEGA la exploración al subagente `explore` (task tool, tipo `explore`) en lugar de leer 4+ archivos vos mismo. Regla: si entender el problema requiere leer 4+ archivos o un recorrido amplio del código, lanzá `explore` con una consigna acotada y usá su resumen; no leas todo inline. No delegues edición ni implementación — solo exploración/investigación.
 
 ## Reglas de conducta estricta
 

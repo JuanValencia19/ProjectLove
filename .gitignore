@@ -4,3 +4,5 @@ out/
 .env
 .env.local
 !.env.example
+# Local AI runtime state
+.atl/

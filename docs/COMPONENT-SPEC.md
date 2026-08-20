@@ -6,7 +6,7 @@
 
 ---
 
-# 1. Purpose
+## 1. 🎯 Purpose
 
 This document defines the visual and functional requirements of the main UI components of OurStory.
 
@@ -26,7 +26,7 @@ Production components belong exclusively in:
 
 ---
 
-# 2. Component Architecture
+## 2. 🧩 Component Architecture
 
 ```text
 src/components/

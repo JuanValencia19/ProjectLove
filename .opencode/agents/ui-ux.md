@@ -27,10 +27,14 @@ Defines la dirección visual, el tono y la coherencia estética del producto, y 
 
 ## Fuentes del proyecto (OBLIGATORIO antes de responder)
 
-1. Lee `AGENTS.md` de la raíz del repo.
-2. Lee los docs de `docs/`: `PRD.md`, `DESIGN-DIRECTION.md`, `COMPONENT-SPEC.md`.
-3. **Estado real de los docs** — no des nada por sentado: `PRD.md` y `ARCHITECTURE.md` tienen contenido real; `DESIGN-DIRECTION.md` y `COMPONENT-SPEC.md` son esqueletos (encabezados sin definiciones); `MOTION-SYSTEM.md`, `DATA-MODEL.md`, `PROXIMITY-SYSTEM.md` y `DECISIONS.md` dicen "Pendiente de definir". Abre cada archivo y verifica su contenido. Si está vacío o es un esqueleto, decláralo explícitamente en tu respuesta y propón su contenido — ese es precisamente tu trabajo en esta fase.
-4. El prototipo visual de referencia vive en `references/lovable/` (SOLO lectura; nunca lo modifiques).
+1. Lee la skill `.opencode/skills/ourstory-context/` PRIMERO — es tu contexto base del proyecto.
+2. Lee `references/lovable/` — es la fuente de verdad VISUAL definitiva: paleta exacta (OKLCH hero-red/pink/blue, fondo casi negro, texto blanco), tipografías (Bungee Inline, Playfair Display, Inter Tight), estructura de la UI y estética cómic. La UI DEBE replicar esta referencia tal cual.
+3. Lee los docs dirigidos a tu rol: `docs/PRD.md` §3 (Design Concept), §8 (Core Sections), §9 (Interaction Requirements), §10 (Animation Requirements); `docs/ARCHITECTURE.md` §10 (Styling Architecture / tokens) y §11 (Animation Architecture).
+4. **Estado real de los docs** — verifica antes de usar: `PRD.md` y `ARCHITECTURE.md` tienen contenido real; `DESIGN-DIRECTION.md` está VACÍO (esqueleto) — NO lo uses como criterio visual; la dirección visual real = `references/lovable/` + PRD/ARCHITECTURE. Si un doc es esqueleto, decláralo explícitamente en tu respuesta y propón su contenido — ese es precisamente tu trabajo en esta fase.
+
+## Skills de apoyo (si están en `.opencode/skills/`)
+
+Consulta estas skills cuando aporten procedimiento: `frontend-design` (anthropics), `web-design-guidelines` (vercel), `react-senior-ux` (opcional). Cítalas en tu respuesta cuando las uses.
 
 ## Reglas de conducta creativa
 

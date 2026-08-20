@@ -6,7 +6,7 @@
 
 ---
 
-## 1. Architecture Goals
+## 1. 🧭 Architecture Goals
 
 The architecture must:
 
@@ -22,9 +22,9 @@ The architecture should favor simplicity over unnecessary abstractions.
 
 ---
 
-# 2. Architectural Principles
+## 2. 🏛️ Architectural Principles
 
-## 2.1 Reference vs Production
+### 2.1 🔄 Reference vs Production
 
 The original Lovable implementation is stored in:
 
@@ -40,7 +40,7 @@ Agents may study the Lovable implementation but must not modify it.
 
 ---
 
-## 2.2 Content vs Presentation
+### 2.2 🧩 Content vs Presentation
 
 Relationship content must be separated from UI components.
 
@@ -57,7 +57,7 @@ Visual presentation
 
 Components should not contain large amounts of hardcoded relationship content.
 
-## 2.3 Components vs Logic
+### 2.3 🧠 Components vs Logic
 
 Visual components should primarily handle presentation.
 
@@ -72,7 +72,7 @@ useReveal()
 useScrollProgress()
 useGeolocation()
 useProximity()
-## 2.4 Mobile First
+### 2.4 📱 Mobile First
 
 Mobile is the primary target.
 
@@ -80,7 +80,7 @@ Components should be designed for small screens first and progressively enhanced
 
 Do not create separate desktop/mobile implementations unless the interaction genuinely requires different behavior.
 
-3. Project Structure
+## 3. 🗂️ Project Structure
 src/
 ├── app/
 │
@@ -114,7 +114,7 @@ The structure may evolve when implementation reveals a legitimate need.
 
 Agents should not create new architectural layers without justification.
 
-4. Application Layer
+## 4. 🧱 Application Layer
 src/app/
 
 Contains the Next.js application routes and page-level composition.
@@ -140,7 +140,7 @@ Example:
   <Proximity />
   <Finale />
 </main>
-5. Component Layer
+## 5. 🧩 Component Layer
 src/components/
 
 Contains reusable visual components.
@@ -162,7 +162,7 @@ and component requirements defined in:
 
 docs/COMPONENT-SPEC.md
 
-6. Data Layer
+## 6. 🗃️ Data Layer
 src/data/
 
 Contains static relationship content.
@@ -182,7 +182,7 @@ Other narrative content
 
 It should not contain UI logic.
 
-7. Types Layer
+## 7. 🧾 Types Layer
 src/types/
 
 Contains shared TypeScript types.
@@ -197,7 +197,7 @@ Types should be shared when multiple components or modules depend on the same st
 
 Avoid creating types that are only used once unless they significantly improve readability.
 
-8. Hooks Layer
+## 8. 🪝 Hooks Layer
 src/hooks/
 
 Contains reusable React hooks.
@@ -224,7 +224,7 @@ Coordinates proximity-related state.
 
 Hooks should not contain visual markup.
 
-9. Utility Layer
+## 9. 🛠️ Utility Layer
 src/lib/
 
 Contains framework-independent utilities.
@@ -243,7 +243,7 @@ General project utilities.
 
 Avoid turning this directory into a generic dumping ground.
 
-10. Styling Architecture
+## 10. 🎨 Styling Architecture
 
 The project uses Tailwind CSS and CSS custom properties.
 
@@ -271,7 +271,7 @@ docs/DESIGN-DIRECTION.md
 
 Agents must not introduce alternative design systems without documenting the reason.
 
-11. Animation Architecture
+## 11. ✨ Animation Architecture
 
 Animation should be layered according to complexity.
 
@@ -307,7 +307,7 @@ The complete animation system is documented in:
 
 docs/MOTION-SYSTEM.md
 
-12. Image Architecture
+## 12. 🖼️ Image Architecture
 
 Images should be treated as first-class content.
 
@@ -329,7 +329,7 @@ Be lazy-loaded when they are not immediately visible.
 
 Real relationship photographs should replace placeholders without requiring component restructuring.
 
-13. Proximity Architecture
+## 13. 📍 Proximity Architecture
 
 The core experience does not require a backend.
 
@@ -367,7 +367,7 @@ Detailed requirements belong in:
 
 docs/PROXIMITY-SYSTEM.md
 
-14. State Management
+## 14. 🧠 State Management
 
 The project should avoid global state unless genuinely required.
 
@@ -380,7 +380,7 @@ Dedicated hooks for reusable stateful behavior.
 
 A global state library should only be introduced if the application demonstrates a real need.
 
-15. Dependency Rules
+## 15. 🔒 Dependency Rules
 
 Before introducing a dependency, agents should verify whether the functionality can reasonably be implemented using:
 
@@ -393,7 +393,7 @@ Avoid adding dependencies for isolated or trivial functionality.
 
 Every significant new dependency should have a clear justification.
 
-16. Component Communication
+## 16. 🔗 Component Communication
 
 Prefer explicit props and composition.
 
@@ -405,7 +405,7 @@ rather than having components independently import unrelated application state.
 
 Shared state should only be introduced when multiple distant components genuinely require it.
 
-17. Error and Empty States
+## 17. ⚠️ Error and Empty States
 
 Interactive components should define meaningful fallback behavior.
 
@@ -425,7 +425,7 @@ Allow the user to continue using the rest of the experience.
 
 The main story experience must never become unusable because the proximity feature fails.
 
-18. Accessibility
+## 18. ♿ Accessibility
 
 The architecture must support:
 
@@ -439,7 +439,7 @@ Screen-reader friendly interactive elements
 
 Animations must never be the only mechanism used to communicate important information.
 
-19. Performance
+## 19. ⚡ Performance
 
 Performance is especially important on mobile.
 
@@ -453,7 +453,7 @@ Prefer CSS for simple animations.
 Avoid unnecessary animation libraries.
 Keep scroll handlers efficient.
 Avoid continuous JavaScript work when browser APIs can be used.
-20. Architecture Boundaries
+## 20. 🚧 Architecture Boundaries
 
 The following boundaries must be respected:
 
@@ -495,7 +495,7 @@ Shared contracts
 src/app/
     ↓
 Application composition
-21. Agent Implementation Rule
+## 21. 🤖 Agent Implementation Rule
 
 Before implementing a feature, agents should determine:
 

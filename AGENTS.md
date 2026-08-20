@@ -7,12 +7,16 @@ ProjectLove is a private, cinematic anniversary web experience.
 
 Before modifying the project, agents MUST read and verify the actual state of these docs (do not assume content):
 
-- docs/PRD.md — defined
-- docs/ARCHITECTURE.md — defined
-- docs/COMPONENT-SPEC.md — skeleton (headers without definitions)
-- docs/DESIGN-DIRECTION.md — skeleton (headers only)
-- docs/MOTION-SYSTEM.md — pending
-- docs/DATA-MODEL.md, docs/PROXIMITY-SYSTEM.md, docs/DECISIONS.md — pending
+- docs/PRD.md — defined (550 lines)
+- docs/ARCHITECTURE.md — defined (509 lines)
+- docs/COMPONENT-SPEC.md — skeleton (purpose + component tree only; per-component specs pending)
+- docs/DESIGN-DIRECTION.md — skeleton (headers only; do NOT use as visual criterion)
+- docs/MOTION-SYSTEM.md — defined (170 lines)
+- docs/DATA-MODEL.md — defined (121 lines)
+- docs/PROXIMITY-SYSTEM.md — defined (718 lines)
+- docs/DECISIONS.md — defined (165 lines, D-001 to D-014)
+
+The definitive visual reference is `references/lovable/` (palette, typography, layout, comic aesthetic). Agents read the `.opencode/skills/ourstory-context/` skill first, then the docs directed by role (token savings).
 
 If the spec required for the task is pending or a skeleton, report it and stop — do not invent specifications, features, APIs, or data contracts.
 

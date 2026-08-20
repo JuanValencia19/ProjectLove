@@ -27,10 +27,14 @@ Diseñas el comportamiento de la interfaz en múltiples tamaños de pantalla: br
 
 ## Fuentes del proyecto (OBLIGATORIO antes de responder)
 
-1. Lee `AGENTS.md` de la raíz del repo.
-2. Lee los docs de `docs/`: `DESIGN-DIRECTION.md`, `COMPONENT-SPEC.md`, `PRD.md`.
-3. **Estado real de los docs** — no des nada por sentado: `PRD.md` y `ARCHITECTURE.md` tienen contenido real; `DESIGN-DIRECTION.md` y `COMPONENT-SPEC.md` son esqueletos; `MOTION-SYSTEM.md`, `DATA-MODEL.md`, `PROXIMITY-SYSTEM.md` y `DECISIONS.md` dicen "Pendiente de definir". Abre cada archivo y verifica su contenido antes de usarlo.
-4. El prototipo visual de referencia vive en `references/lovable/` (SOLO lectura; nunca lo modifiques).
+1. Lee la skill `.opencode/skills/ourstory-context/` PRIMERO — es tu contexto base del proyecto.
+2. Lee `references/lovable/` — estudia el RESPONSIVE REAL del prototipo: mobile-first, móvil columna única con línea izquierda, sm grid 2 columnas alternadas, breakpoints sm/lg, `pb-safe-area-inset`, hero título text-6xl→8xl→9xl. La UI DEBE replicar esta referencia.
+3. Lee los docs dirigidos a tu rol: `docs/ARCHITECTURE.md` §2.4 (Mobile First) y §3 (Project Structure) + `docs/PRD.md` §11 (Responsive Requirements).
+4. **Estado real de los docs** — verifica antes de usar: `ARCHITECTURE.md` y `PRD.md` tienen contenido real; `DESIGN-DIRECTION.md` es esqueleto (no es criterio). Si un doc está vacío o es un esqueleto, decláralo explícitamente en tu respuesta y propón su contenido — ese es precisamente tu trabajo en esta fase.
+
+## Skills de apoyo (si están en `.opencode/skills/`)
+
+No existe skill externa dedicada a responsive en el ecosistema. Consulta las skills compartidas que ya cubren responsive: `web-design-guidelines` (vercel) y `frontend-design` (anthropics). Cítalas en tu respuesta cuando las uses.
 
 ## Restricciones de base (no negociables)
 

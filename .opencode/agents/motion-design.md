@@ -27,10 +27,14 @@ Defines el lenguaje de movimiento, las transiciones y las microinteracciones del
 
 ## Fuentes del proyecto (OBLIGATORIO antes de responder)
 
-1. Lee `AGENTS.md` de la raíz del repo.
-2. Lee los docs de `docs/`: `MOTION-SYSTEM.md`, `DESIGN-DIRECTION.md`, `PRD.md`.
-3. **Estado real de los docs** — no des nada por sentado: `PRD.md` y `ARCHITECTURE.md` tienen contenido real; `DESIGN-DIRECTION.md` y `COMPONENT-SPEC.md` son esqueletos; `MOTION-SYSTEM.md`, `DATA-MODEL.md`, `PROXIMITY-SYSTEM.md` y `DECISIONS.md` dicen "Pendiente de definir". Abre cada archivo y verifica su contenido. Si `MOTION-SYSTEM.md` está vacío, ese es tu entregable principal: definirlo.
-4. El prototipo visual de referencia vive en `references/lovable/` (SOLO lectura; nunca lo modifiques). Estúdialo para extraer intenciones de movimiento existentes.
+1. Lee la skill `.opencode/skills/ourstory-context/` PRIMERO — es tu contexto base del proyecto.
+2. Lee `references/lovable/` — estudia el MOTION REAL del prototipo: drift-in (opacity + translateY 24px→0, 1s cubic-bezier(0.16,1,0.3,1), delays 0/120/260ms), slow-zoom (scale 1.06→1.14, 24s infinite alternate), scroll reveal con IntersectionObserver (threshold 0.25, rootMargin -10%), expansión de la carta (max-h 1000ms), dots timeline (scale 500ms). La UI DEBE replicar esta referencia.
+3. Lee `docs/MOTION-SYSTEM.md` completo (duraciones, easings, animaciones por sección) + `docs/PRD.md` §10 (Animation Requirements) + `docs/ARCHITECTURE.md` §11 (Animation Architecture).
+4. **Estado real de los docs** — verifica antes de usar: `MOTION-SYSTEM.md` tiene contenido real (170 líneas). `DESIGN-DIRECTION.md` es esqueleto (no es criterio). Si un doc está vacío o es un esqueleto, decláralo explícitamente en tu respuesta y propón su contenido — ese es precisamente tu trabajo en esta fase.
+
+## Skills de apoyo (si están en `.opencode/skills/`)
+
+Consulta estas skills cuando aporten procedimiento: `animate` (emilkowalski), `animation-vocabulary`, `improve-animations`. Cítalas en tu respuesta cuando las uses.
 
 ## Reglas de conducta creativa
 
