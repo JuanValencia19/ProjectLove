@@ -163,3 +163,26 @@ Estado: Aprobada
 Los agentes no deben introducir cambios arquitectónicos importantes sin justificar la necesidad y respetar ARCHITECTURE.md.
 
 Las nuevas decisiones importantes deben registrarse en este documento.
+
+## D-015 ✨ Finale mínimo (MVP1)
+
+**Estado:** Aprobada
+
+El Finale (sección de cierre) se implementa en su forma mínima porque el PRD §8.8 deja el diseño exacto como TBD:
+
+- Mensaje de cierre conceptual: "Esto es solo el principio" (placeholder en español en `src/data/finale.ts`, reemplazable por el usuario).
+- Tipografía display + aberración cromática, una línea serif italic, overlay halftone.
+- Sin foto ni partículas: estructura mínima, sin interacción requerida.
+
+## D-016 🖼️ Referencia Lovable canónica para MVP1
+
+**Estado:** Aprobada
+
+Para MVP1, `references/lovable/` es la especificación visual canónica: paleta OKLCH, tipografías (Bungee Inline / Playfair Display / Inter Tight), estética cómic y motion CSS + IntersectionObserver (sin librerías de animación).
+
+La finalización de `COMPONENT-SPEC.md` y `DESIGN-DIRECTION.md` queda diferida (post-MVP1).
+
+Contratos de datos resueltos para la implementación:
+
+- `Memory` sigue `DATA-MODEL.md` §2 (`id, date, title, text, image?`); los campos extra del PRD §8.4 (`description, chapter, location, quote, featured`) quedan diferidos.
+- `LoveLetter` evoluciona a `content: string[]` (un párrafo por entrada), sincronizado en `DATA-MODEL.md` §3.

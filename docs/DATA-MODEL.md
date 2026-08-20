@@ -14,6 +14,8 @@ El modelo debe mantenerse simple y evitar persistencia innecesaria.
 
 Representa un recuerdo de la relación.
 
+> **Resolución MVP1 (D-016):** este es el contrato canónico para la implementación. Los campos adicionales del PRD §8.4 (description, chapter, location, quote, featured) quedan diferidos.
+
 ```ts
 type Memory = {
   id: string;
@@ -27,10 +29,12 @@ type Memory = {
 
 Representa la carta personal.
 
+> `content` evolucionó de `string` a `string[]`: un párrafo por entrada (D-016).
+
 type LoveLetter = {
   id: string;
   title: string;
-  content: string;
+  content: string[];
 };
 ## 4. 👤 User
 
