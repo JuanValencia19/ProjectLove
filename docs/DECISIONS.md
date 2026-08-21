@@ -174,6 +174,71 @@ El Finale (sección de cierre) se implementa en su forma mínima porque el PRD �
 - Tipografía display + aberración cromática, una línea serif italic, overlay halftone.
 - Sin foto ni partículas: estructura mínima, sin interacción requerida.
 
+## D-017 📡 Realtime: Supabase Broadcast
+
+**Estado:** Aprobada
+
+Para la comunicación en tiempo real entre los dos dispositivos se utilizará **Supabase Realtime Broadcast**.
+
+Motivo:
+- Solo se necesita comunicación entre dos dispositivos.
+- No se persisten posiciones en base de datos.
+- Broadcast es suficiente para compartir ubicación temporalmente.
+- El canal se destruye al cerrar la pestaña.
+
+La dependencia `@supabase/supabase-js` será necesaria pero se instalará durante la implementación, no antes.
+
+---
+
+## D-018 🔗 Identificación: Room hash
+
+**Estado:** Aprobada
+
+Los dos usuarios se identifican mediante un **room code codificado en el hash de la URL**.
+
+Ejemplo:
+
+```text
+https://ourstory.app/#kx7f2
+```
+
+Flujo:
+1. Usuario A abre la página → se genera un room code corto → se comparte el link.
+2. Usuario B abre el link → ingresa automáticamente a la misma sala.
+3. No se implementa autenticación tradicional para MVP.
+
+---
+
+## D-019 🎯 Estado TOGETHER: regla de precisión
+
+**Estado:** Aprobada
+
+El estado TOGETHER se activa únicamente cuando se cumplen **ambas condiciones**:
+
+```text
+distancia ≤ 5m
+AND
+accuracyA + accuracyB < 10m
+```
+
+Si la precisión GPS combinada es insuficiente, el sistema no afirmará que los usuarios están juntos aunque la distancia calculada sea menor a 5m. La honestidad sobre la precisión tiene prioridad sobre la experiencia emocional.
+
+---
+
+## D-020 🔄 State machine: estados paralelos
+
+**Estado:** Aprobada
+
+Los estados de distancia (FAR, NEAR, VERY_NEAR, TOGETHER) son **paralelos**, no secuenciales.
+
+El estado se determina directamente según la distancia y precisión actuales, no según una progresión obligatoria.
+
+```text
+WAITING → FAR | NEAR | VERY_NEAR | TOGETHER
+```
+
+---
+
 ## D-016 🖼️ Referencia Lovable canónica para MVP1
 
 **Estado:** Aprobada

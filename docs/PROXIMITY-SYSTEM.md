@@ -18,6 +18,7 @@ El umbral inicial definido para esta experiencia es:
 
 ```text
 ≤ 5 metros
+```
 
 ## 2. 🧩 Objetivo de la funcionalidad
 
@@ -33,32 +34,40 @@ Manejar errores y pérdida de conexión.
 Evitar que un fallo de proximidad afecte al resto del sitio.
 ## 3. 🏗️ Arquitectura general
 
-La arquitectura conceptual será:
+La arquitectura para MVP es:
 
-Usuario A
+```text
+Device A (phone)
    │
-   └── Geolocation API
-          │
-          ▼
-   Location Service
-          │
-          ▼
-      Realtime
-          │
-          ▼
-       Usuario B
-          │
-          ▼
-   Location Service
-          │
-          ▼
- Distance Calculator
-          │
-          ▼
- Proximity State
-          │
-          ▼
-   Proximity UI
+   ├── navigator.geolocation
+   │
+   ↓
+useGeolocation()
+   │
+   ↓
+Supabase Realtime Broadcast ← room:{roomCode}
+   │
+   ↓
+Device B (phone)
+   │
+   ↓
+Partner Location
+   │
+   ↓
+Distance + Accuracy (Haversine)
+   │
+   ↓
+Proximity State (FAR | NEAR | VERY_NEAR | TOGETHER)
+   │
+   ↓
+<Proximity /> UI
+```
+
+La ubicación se trata como dato temporal. No se diseña persistencia de ubicación.
+
+La identificación se resuelve mediante room code en el hash de la URL (D-018).
+
+La comunicación se realiza mediante Supabase Realtime Broadcast (D-017).
 
 Los componentes visuales no deben encargarse directamente de la lógica de geolocalización.
 
@@ -141,12 +150,15 @@ error
 
 La información mínima necesaria es:
 
+```ts
 type LocationData = {
   latitude: number;
   longitude: number;
   accuracy: number;
   timestamp: number;
 };
+```
+
 latitude
 
 Latitud del dispositivo.
@@ -165,41 +177,44 @@ Momento en que fue obtenida la ubicación.
 
 ## 7. 🔒 Privacidad
 
-La ubicación es información sensible.
+La ubicación es información sensible. El sistema debe cumplir:
 
-El sistema debe seguir el principio de:
-
-Utilizar únicamente la información necesaria para proporcionar la experiencia de proximidad.
-
-No se debe almacenar un historial de ubicaciones salvo que exista una decisión explícita que lo requiera.
-
-La ubicación no debe exponerse públicamente.
-
-Los datos deben estar asociados únicamente a los usuarios autorizados para participar en la experiencia.
+- La ubicación **no se almacena** como historial (D-008).
+- Se utiliza **únicamente** para calcular proximidad en tiempo real.
+- La comunicación pertenece a una **room temporal** que se destruye al cerrar la pestaña.
+- El usuario debe **conceder permiso** de geolocalización explícitamente.
+- El sistema debe manejar correctamente la **denegación del permiso** (§19).
+- La ubicación no se expone públicamente.
+- Los datos se asocian únicamente a los usuarios de la room activa.
 
 ## 8. 👤 Identificación de usuarios
 
-El sistema necesita distinguir entre:
+El sistema distingue entre Usuario A y Usuario B mediante un **room code en el hash de la URL** (D-018).
 
-Usuario A
-Usuario B
-
-La implementación concreta de autenticación o identificación debe definirse en la arquitectura del proyecto.
+Flujo:
+1. Usuario A abre la página → se genera un room code corto → comparte el link.
+2. Usuario B abre el link → ingresa automáticamente a la misma sala.
+3. No se implementa autenticación tradicional para MVP.
 
 El componente de proximidad no debe asumir cómo se autentican los usuarios.
 
 ## 9. ⚡ Comunicación en tiempo real
 
-El sistema requiere algún mecanismo para transmitir la ubicación de un usuario al otro.
+La comunicación se realiza mediante **Supabase Realtime Broadcast** (D-017).
 
-La tecnología concreta dependerá de la infraestructura elegida para el proyecto.
+Cada dispositivo suscribe a un canal `room:{roomCode}` y transmite su ubicación periódicamente.
 
-La capa realtime debe proporcionar conceptualmente:
+La capa realtime proporciona conceptualmente:
 
+```ts
 type RealtimeLocation = {
   userId: string;
   location: LocationData;
 };
+```
+
+La ubicación se transmite como dato temporal. No se persiste en base de datos.
+
 ## 10. 🔄 Frecuencia de actualización
 
 No es necesario enviar la ubicación constantemente.
@@ -360,6 +375,7 @@ El error debe mostrarse de forma comprensible y no debe romper el resto de la p�
 
 Conceptualmente:
 
+```text
                 ┌─────────────┐
                 │ UNAVAILABLE │
                 └──────┬──────┘
@@ -374,15 +390,23 @@ Conceptualmente:
                  │  WAITING  │
                  └─────┬─────┘
                        │
-                ┌──────┴──────┐
-                ▼             ▼
-             FAR/NEAR     ERROR
-                │
-                ▼
-           VERY_NEAR
-                │
-                ▼
-           TOGETHER ❤️
+          ┌────────────┼────────────┬──────────────┐
+          ▼            ▼            ▼              ▼
+       ┌──────┐   ┌──────┐   ┌──────────┐   ┌──────────┐
+       │  FAR │   │ NEAR │   │VERY_NEAR │   │ TOGETHER │
+       └──────┘   └──────┘   └──────────┘   └──────────┘
+```
+
+Los estados FAR, NEAR, VERY_NEAR y TOGETHER son **paralelos**, no secuenciales.
+
+El estado se determina directamente según la distancia calculada y la precisión disponible:
+
+- **FAR**: distancia considerable (> 100m aprox.)
+- **NEAR**: distancia moderada (~10–100m)
+- **VERY_NEAR**: distancia corta (~5–10m)
+- **TOGETHER**: distancia ≤ 5m AND precisión combinada < 10m (D-019)
+
+ERROR es un estado separado que puede ocurrir desde cualquier estado operativo.
 
 Las transiciones reales deben depender de los datos disponibles.
 
@@ -447,6 +471,7 @@ status
 
 El estado de proximidad puede tener una estructura similar a:
 
+```ts
 type ProximityState = {
   status: ProximityStatus;
   distance: number | null;
@@ -454,6 +479,7 @@ type ProximityState = {
   partnerLocation: LocationData | null;
   error: string | null;
 };
+```
 
 La estructura definitiva puede modificarse si la arquitectura del proyecto determina una solución mejor.
 
