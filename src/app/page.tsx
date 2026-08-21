@@ -1,8 +1,19 @@
+import { Hero } from "@/components/hero/Hero";
+import { StoryIntro } from "@/components/story-intro/StoryIntro";
+import { Timeline } from "@/components/timeline/Timeline";
+import { Gallery } from "@/components/gallery/Gallery";
+import { LoveLetter } from "@/components/letter/LoveLetter";
+import { Finale } from "@/components/finale/Finale";
+
 export default function HomePage() {
   return (
     <main>
-      {/* Canonical section order (ARCHITECTURE §4): Hero → StoryIntro → Timeline → LoveLetter → Finale */}
-      {/* Slice 2 lands Hero, StoryIntro, Timeline and LoveLetter; Slice 3 lands Finale. */}
+      <Hero />
+      <StoryIntro />
+      <Timeline />
+      <Gallery />
+      <LoveLetter />
+      <Finale />
     </main>
-  )
+  );
 }
