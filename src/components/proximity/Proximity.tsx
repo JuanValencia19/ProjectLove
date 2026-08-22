@@ -75,11 +75,8 @@ export function Proximity() {
   return (
     <section className="relative px-6 py-24 text-center sm:py-32">
       <header className="mx-auto mb-12 max-w-2xl">
-        <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-hero-red">
-          Issue #04
-        </span>
-        <h2 className="chromatic mt-4 font-display text-4xl uppercase sm:text-6xl">
-          Proximidad
+        <h2 className="chromatic font-display text-4xl uppercase sm:text-6xl">
+          SPIDER TRACKER
         </h2>
       </header>
 
@@ -128,7 +125,7 @@ export function Proximity() {
           <button
             type="button"
             onClick={requestGeolocation}
-            className="mt-8 border-2 border-hero-pink px-6 py-3 text-[10px] font-bold tracking-[0.3em] uppercase transition-colors hover:bg-hero-pink hover:text-[oklch(0.11_0.02_290)]"
+            className="mt-8 border-2 border-hero-pink px-6 py-3 text-[10px] font-bold tracking-[0.3em] uppercase transition-colors hover:bg-hero-pink hover:text-[oklch(0.11_0.02_290)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-hero-pink"
           >
             Compartir mi ubicación
           </button>

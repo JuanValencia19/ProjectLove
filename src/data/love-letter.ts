@@ -10,6 +10,6 @@ export const loveLetter: LoveLetter = {
   content: [
     "Si tuviera que dibujar el universo, empezaría por ti. Por tu risa cuando nadie más la escucha, por esa forma tuya de convertir un día cualquiera en un capítulo que vale la pena guardar.",
     "He aprendido que el amor no es un salto perfecto entre edificios: es la mano que aparece a mitad de la caída. Y tú siempre apareces.",
-    "Así que aquí estoy, un año después, con el mismo vértigo del primer día y la misma certeza: en cada universo, te elijo a ti.",
+    "Así que aquí estoy, 3 meses después, con el mismo vértigo del primer día y la misma certeza: en cada universo, te elijo a ti.",
   ],
 };

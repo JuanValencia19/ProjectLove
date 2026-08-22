@@ -45,7 +45,7 @@ export function useProximity() {
   // ── Evaluate proximity state on every data change ─────
 
   useEffect(() => {
-    // Map geo errors to UNAVAILABLE
+    // Map geo permission/unavailability to UNAVAILABLE
     if (geoStatus === "denied" || geoStatus === "unavailable") {
       setState({
         status: "UNAVAILABLE",
@@ -53,6 +53,18 @@ export function useProximity() {
         userLocation: myLocation,
         partnerLocation: null,
         error: geoError?.message ?? "Geolocation not available",
+      });
+      return;
+    }
+
+    // Map geolocation timeout/error to ERROR
+    if (geoStatus === "error") {
+      setState({
+        status: "ERROR",
+        distance: null,
+        userLocation: myLocation,
+        partnerLocation: null,
+        error: geoError?.message ?? "Geolocation timeout",
       });
       return;
     }
@@ -77,7 +89,7 @@ export function useProximity() {
       return;
     }
 
-    // Check for stale partner location
+    // Check for stale partner location (> 30s old → discard)
     let partnerLocation = rawPartnerLocation;
     if (partnerLocation && Date.now() - partnerLocation.timestamp > STALE_THRESHOLD_MS) {
       partnerLocation = null;

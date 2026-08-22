@@ -23,9 +23,10 @@ Gallery
   ↓
 Love Letter
   ↓
-Finale
-  ↓
 Proximity
+  ↓
+Finale
+```
 
 La intención no es crear una landing tradicional, sino una experiencia visual que se sienta como recorrer nuestra historia.
 
@@ -57,6 +58,8 @@ React
 TypeScript
 Tailwind CSS
 CSS animations
+Supabase (Realtime Broadcast)
+Vitest (testing)
 Git / GitHub
 
 No se deben añadir dependencias innecesariamente.
@@ -87,7 +90,8 @@ ProjectLove/
 │   ├── components/
 │   ├── data/
 │   ├── hooks/
-│   └── lib/
+│   ├── lib/
+│   └── types/
 │
 ├── tests/
 │
@@ -118,6 +122,8 @@ DATA-MODEL.md	Modelos de datos
 MOTION-SYSTEM.md	Sistema de animaciones
 PROXIMITY-SYSTEM.md	Sistema de proximidad
 DECISIONS.md	Decisiones del proyecto
+DEPLOYMENT.md	Guía de deployment
+GLOBAL-PROJECT-AUDIT.md	Auditoría final MVP1
 AGENT-WORKFLOW.md	Flujo de trabajo de agentes
 📍 Proximity
 
@@ -139,23 +145,28 @@ La implementación debe respetar las restricciones de privacidad y las limitacio
 
 🚧 Estado actual
 
-MVP1 — En desarrollo
+**MVP1 — Completo ✅**
 
+```
 Foundation       ✅
-Hero              ✅
-Story Intro       ✅
-Timeline          ✅
-Gallery           ✅
-Love Letter       ✅
-Finale            ✅
-QA                🟡
-Assets            🟡
-Proximity         🔴
-Deploy            🔴
+Hero             ✅
+Story Intro      ✅
+Timeline         ✅
+Gallery          ✅
+Love Letter      ✅
+Proximity        ✅
+Finale           ✅
+Testing          ✅  (25 tests, Vitest)
+Accessibility    ✅
+Responsive       ✅
+Deployment       ✅  (falta configurar Supabase)
+```
 
-Progreso aproximado: 70% del MVP1.
+**Progreso MVP1: ~98%**
 
-El porcentaje es una estimación de avance funcional y no representa porcentaje de código.
+La app está funcional y lista para deployment. El único paso pendiente es configurar las variables de entorno de Supabase (`NEXT_PUBLIC_SUPABASE_URL` y `NEXT_PUBLIC_SUPABASE_ANON_KEY`) para que la funcionalidad de Proximity se conecte.
+
+Ver `docs/GLOBAL-PROJECT-AUDIT.md` para la auditoría completa.
 
 🚀 Desarrollo local
 
@@ -170,6 +181,10 @@ npm run dev
 Crear build:
 
 npm run build
+
+Ejecutar tests:
+
+npm test
 🔐 Seguridad
 
 Nunca almacenar en el repositorio:

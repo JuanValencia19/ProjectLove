@@ -36,7 +36,15 @@ function TimelineItem({
       <div
         className={`${isEven ? "sm:order-2" : "sm:order-1"} flex justify-center`}
       >
-        <div className="halftone h-48 w-48 rounded-sm bg-hero-pink/10 text-hero-pink/[0.06] mix-blend-overlay sm:h-64 sm:w-64" />
+        {memory.image ? (
+          <img
+            src={memory.image}
+            alt={memory.title}
+            className="h-48 w-48 rounded-sm object-contain sm:h-64 sm:w-64"
+          />
+        ) : (
+          <div className="halftone h-48 w-48 rounded-sm bg-hero-pink/10 text-hero-pink/[0.06] mix-blend-overlay sm:h-64 sm:w-64" />
+        )}
       </div>
 
       {/* Dot on the timeline line */}

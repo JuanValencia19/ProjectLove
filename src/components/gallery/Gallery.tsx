@@ -19,7 +19,15 @@ function GalleryCard({
       className={`flex flex-col overflow-hidden rounded-sm border-2 border-white/15 bg-white/[0.04] text-white/80 transition-all duration-700 ease-out ${shown ? "translate-y-0 opacity-100" : "translate-y-6 opacity-0"}`}
       style={{ transitionDelay: `${index * 80}ms` }}
     >
-      <div className="halftone aspect-[4/3] bg-hero-blue/[0.04] text-hero-blue/[0.06] mix-blend-overlay" />
+      {memory.image ? (
+          <img
+            src={memory.image}
+            alt={memory.title}
+            className="aspect-[4/3] w-full object-contain"
+          />
+        ) : (
+          <div className="halftone aspect-[4/3] bg-hero-blue/[0.04] text-hero-blue/[0.06] mix-blend-overlay" />
+        )}
 
       <div className="flex flex-1 flex-col gap-3 p-6">
         <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-hero-blue">
@@ -40,10 +48,7 @@ export function Gallery() {
   return (
     <section id="gallery" className="px-6 py-24 sm:py-32">
       <header className="mx-auto mb-16 max-w-2xl text-center">
-        <span className="text-[10px] font-bold tracking-[0.4em] uppercase text-hero-red">
-          Issue #03
-        </span>
-        <h2 className="chromatic mt-4 font-display text-4xl uppercase sm:text-6xl">
+        <h2 className="chromatic font-display text-4xl uppercase sm:text-6xl">
           Momentos
         </h2>
       </header>

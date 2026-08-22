@@ -75,9 +75,23 @@
   animation: slow-zoom 24s ease-out infinite alternate;
 }
 
+@keyframes scanlines {
+  from {
+    background-position-y: 0;
+  }
+  to {
+    background-position-y: 80px;
+  }
+}
+
+@utility animate-scanlines {
+  animation: scanlines 3s linear infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .animate-drift-in,
-  .animate-slow-zoom {
+  .animate-slow-zoom,
+  .animate-scanlines {
     animation: none;
   }
 }
